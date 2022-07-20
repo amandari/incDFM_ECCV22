@@ -1,0 +1,47 @@
+# CONFIG file with important modifiable parameters for 8dsets 
+# Novelty detector 
+novelty_detector_name: softmax # can be incdfm, dfm, mahal, odin or softmax
+
+# for running oracle, set to False and set novelty_detector_name=dfm
+prediction_propagation: False # if using the predicted labels instead of Ground truth labels for fitting PCA continually
+task_oracle: False
+
+
+## Validation threshold 
+percentile_val_threshold: 65 # usually among (95,85,75,65,55)
+
+
+# gpu
+device: 0
+# testing for debug or not
+test_num: -1 # if debuging put integer > 0. else, -1 
+
+
+
+experiment_name: Softmax_0.3_0.1
+
+# ------------------- Ocasionally modifiable 
+# MLP
+train_technique: 1
+lr: 0.001 # ref is 0.001
+batchsize: 100
+num_epochs: 40
+
+
+# Experiment setup
+percent_old_mix: 1.0
+num_tasks: -1 ## set to -1 if wanting to use entire dataset 
+val_percent: 0.1 # if leaving part of train as validation set
+holdout_percent: 0.3 # (only when creating the experiment) if you are already passing a filepath, this parameter wont matter
+
+
+
+# ---- paths + output
+data_dir: ../../data
+dir_results: ./Results_DFM_CL
+experiment_dir: ./Experiments_DFM_CL
+
+# ---- path to general config file 
+standard_config_file: ../configs_new/incDFM_8dset_CL_fixed_general_config.yaml
+
+dset_name: 8dset

@@ -1,0 +1,10 @@
+threshold_type: iter # simple or iter
+max_iter_pseudolabel: 7
+threshold_percentile: 75
+alg_dfm: simple # either tug or simple
+w_old_i: 0.5
+detector_params:
+  pca_level: 0.995
+  score_type: pca
+  n_components: None
+  n_percent_comp: 0.2

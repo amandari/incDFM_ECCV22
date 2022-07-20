@@ -1,0 +1,85 @@
+# Mostly standard configuration - Usually do not have to alter
+incdfm_config: ../../src/configs_new/ood_method/incdfm_ood_config.yaml
+dfm_config: ../../src/configs_new/ood_method/dfm_ood_config.yaml
+mahal_config: ../../src/configs_new/ood_method/mahal_ood_config.yaml
+softmax_config: ../../src/configs_new/ood_method/softmax_ood_config.yaml
+odin_config: ../../src/configs_new/ood_method/odin_ood_config.yaml
+
+
+#-------------------------------------------------------
+# Experiment setup 
+seed: 0
+holdout: True # if False, use test set for representing "old" mixed samples 
+max_holdout: 0.5 ## just means you cant holdout more then X percent by dataset
+shuffle_order: False
+preload: False
+
+
+# ----------------------------
+# if you are doing finetuning 
+
+train_technique: 1
+lr: 0.001 # ref is 0.001
+type_batch_divide: half
+
+max_batch_ratio: 0.85
+
+fc_sizes: '4096' # layers of clf perceptron, if using a classifier, else just put an empty string ''
+finetune_backbone: 'off' # freeze backbone (to finetune backbone put 'all')
+
+
+# ----If keeping old samples in coreset (Memory)
+keep_all_data: False
+coreset_size_MB: -1 # -1 = Not defined
+log_interval: 10
+
+
+# ----for classifier or trainable backbone, if applicable
+batchsize_test: 100
+cut_epoch_short: False
+weight_old: 0.5
+
+#train_technique - scheduling mode 1 - ADAM + ReduceLROnPlateau
+schedule_patience_perepoch: 0.25
+schedule_decay: 0.5
+
+#train_technique - scheduling mode 1 - SGD + StepLR
+gamma_step_lr: 0.1
+step_size_epoch_lr: 7 # in number of epochs 
+
+
+# ----specifically for cifar100
+num_tasks_cifar: 20 #fine = max is 100. 
+type_l_cifar: super # if using superclasses put super. 
+
+# ----others
+num_threads: 6
+num_workers: 4
+
+#----------------------------------Do not touch-------------------------------------------------
+
+## remove these params after
+compute_score_name: Score_Simple
+w_score: 0.5
+th_percentile_confidence: -1
+metric_confidence: variance
+metric_confidence_direction_novel: max
+
+
+
+# dont change these next 3 for anything other then core50
+scenario: nc
+scenario_classif: class
+exp_type: class
+
+experiment_name_plot: OOD
+
+# ----- feature extraction
+net_type: resnet50_contrastive 
+dfm_layers_input: base.8 # consider making it a list type if concatenation is involved 
+clf_layers_input: base.8
+dfm_layers_factors: -1
+use_image_as_input: False
+
+
+# ---------------------------------------------------------------------

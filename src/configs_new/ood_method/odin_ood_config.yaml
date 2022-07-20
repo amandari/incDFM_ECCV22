@@ -1,0 +1,5 @@
+detector_params:
+  similarity: cosine
+  noise_magnitude: 0.02
+  weight_decay: 0.0001
+threshold_type: simple 

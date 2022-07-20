@@ -1,0 +1,109 @@
+# dataset + experiment if aLREADY PRE-SET 
+dset_name: cifar10
+experiment_filepath: ./Experiments_DFM_CL/cifar10/inc_1class_holdout_hold_0.2_mix_1.0_correct/ # if already predetermined
+# experiment_name: holdout_0.2_1.0
+
+
+# gpu
+device: 1
+# ---- experiment specs (need to comment out experiment_filepath)
+prediction_propagation: True # if using the predicted labels instead of Ground truth labels for fitting PCA continually
+threshold_type: iter # simple or iter
+threshold_percentile: 85
+max_threshold_total: 70
+compute_score_name: Score_Simple
+max_iter_pseudolabel: 6
+w_score: 0.25
+th_percentile_confidence: -1
+metric_confidence: variance
+metric_confidence_direction_novel: max
+
+
+holdout: True # if False, use test set for representing "old" mixed samples 
+holdout_percent: 0.2 # (only when creating the experiment) if you are already passing a filepath, this parameter wont matter
+percent_old_mix: 1.0 # Can be greater then 1.0 - percent which is comming from "old data" of all classes previously seen (will have to be limited by amount of old holdout/test old data available)
+max_holdout: 0.5 ## just means you cant holdout more then X percent by dataset
+num_per_task: 1
+num_classes_first: 2
+num_tasks: 9
+shuffle_order: False
+
+# dont change these next 3 for anything other then core50
+scenario: nc
+scenario_classif: class
+exp_type: class
+
+
+# ---- paths + output
+data_dir: ../../data
+dir_results: ./Results_DFM_CL
+# experiment_dir: ../experiments
+experiment_dir: ./Experiments_DFM_CL
+test_num: -1 # if debuging put integer > 0. else, -1 
+
+
+
+# ----- feature extraction
+net_type: resnet50_contrastive
+dfm_layers_input: base.8 # consider making it a list type if concatenation is involved 
+clf_layers_input: base.8
+dfm_layers_factors: -1
+use_image_as_input: False
+
+
+
+# ------- DFM 
+novelty_detector_name: dfm
+detector_params:
+  pca_level: 0.995
+  score_type: pca
+  n_components: None
+  n_percent_comp: 0.2
+experiment_name_plot: dfm
+
+
+# ------------------------------------------
+# ------------ if you are doing finetuning or training alcassifer on top
+# ------------------------------------------
+train_clf: True
+fc_sizes: '4096' # layers of clf perceptron, if using a classifier, else just put an empty string ''
+finetune_backbone: 'off'
+train_technique: 1
+
+
+# ----If keeping old samples in coreset (Memory)
+keep_all_data: False
+coreset_size: 5000 # if using keep_all_data, put corset_size = 0. 
+coreset_size_MB: -1 # -1 = Not defined
+log_interval: 10
+
+
+
+
+# ----for classifier or trainable backbone, if applicable
+num_epochs: 20
+lr: 0.001
+batchsize: 50
+batchsize_test: 100
+cut_epoch_short: False
+weight_old: 0.5
+
+#train_technique - scheduling mode 1 - ADAM + ReduceLROnPlateau
+schedule_patience_perepoch: 0.25
+schedule_decay: 0.5
+
+#train_technique - scheduling mode 1 - SGD + StepLR
+gamma_step_lr: 0.1
+step_size_epoch_lr: 7 # in number of epochs 
+
+# ---------------------
+# ------------ Others
+# ---------------------
+
+# ----specifically for cifar100
+num_tasks_cifar: 20 #fine = max is 100. 
+type_l_cifar: fine # if using superclasses put super. 
+
+# ----others
+num_threads: 6
+num_workers: 4

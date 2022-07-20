@@ -1,0 +1,11 @@
+data/
+Results/
+experiments/
+sandbox/
+.vscode/
+__pycache__/
+.Python
+src/novelty_level1/results/
+src/novelty_level1/experiments/
+src/novelty_dfm_CL/Results_DFM_CL/
+src/novelty_dfm_CL/Results_DFM_CL_copy/

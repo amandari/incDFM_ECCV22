@@ -1,0 +1,41 @@
+# CONFIG file with important modifiable parameters for 8dsets 
+
+# Novelty detector 
+novelty_detector_name: mahal # can be incdfm, dfm, mahal
+
+# for running oracle, set to False and set novelty_detector_name=dfm
+prediction_propagation: False # if using the predicted labels instead of Ground truth labels for fitting PCA continually
+
+
+## Validation threshold 
+percentile_val_threshold: 55 # usually among (95,85,75,65,55)
+
+
+# gpu
+device: 0
+# testing for debug or not
+test_num: -1 # if debuging put integer > 0. else, -1 
+
+experiment_name: DFM_0.3_0.1
+
+# ------------------- Ocasionally modifiable 
+# for mahal
+coreset_size: 5000
+
+# Experiment setup
+percent_old_mix: 1.0
+num_tasks: -1 ## set to -1 if wanting to use entire dataset 
+val_percent: 0.1 # if leaving part of train as validation set
+holdout_percent: 0.3 # (only when creating the experiment) if you are already passing a filepath, this parameter wont matter
+
+
+
+# ---- paths + output
+data_dir: ../../data
+dir_results: ./Results_DFM_CL
+experiment_dir: ./Experiments_DFM_CL
+
+# ---- path to general config file 
+standard_config_file: ../configs_new/incDFM_8dset_dfm_mahal_CL_fixed_general_config.yaml
+
+dset_name: 8dset

@@ -1,0 +1,73 @@
+#Multi-Task
+
+# Pick dataset
+dset_name: inaturalist21 # can be cifar10, cifar100, svhn, emnist, inaturalist19, inaturalist21
+
+# gpu
+device: 0
+# testing for debug or not
+test_num: -1 # if debuging put integer > 0. else, -1 
+
+
+# #inaturalist19
+# num_tasks: 1 ## set to -1 if wanting to use entire dataset 
+# num_per_task: 6
+# num_classes_first: 6
+
+
+# #inaturalist21
+num_tasks: 1 ## set to -1 if wanting to use entire dataset 
+num_per_task: 9
+num_classes_first: 9
+
+experiment_name: Multi_Task
+
+
+# Memory 
+coreset_size: 5000 # if using keep_all_data, put corset_size = 0. 
+# Training length for each task if training MLP
+num_epochs: 40
+batchsize: 50
+
+
+
+
+# ------------------- Ocasionally modifiable 
+
+val_percent: 0.1 # if leaving part of train as validation set
+holdout_percent: 0.2 # (only when creating the experiment) if you are already passing a filepath, this parameter wont matter
+
+
+
+# Mix of old vs new in each task 1 --> num_new = num_old. 2 --> num_old = 2*num_new
+percent_old_mix: 1.0 # Can be greater then 1.0 - percent which is comming from "old data" 
+# In case of unbalanced datasets. If set to True, will balance them 
+equalize_labels: False
+# In case of unbalanced datasets, will clip counts of classes with too many samples 
+clip_labels: True
+clip_max: 15000
+
+
+
+# ---- paths + output
+data_dir: ../../data
+dir_results: ./Results_DFM_CL
+experiment_dir: ./Experiments_DFM_CL
+
+# ---- path to general config file 
+standard_config_file: ../configs_new/incDFM_1by1_CL_fixed_general_config.yaml
+
+
+# Training 
+train_clf: True #For odin and softmax you need to set to True. 
+
+
+# Novelty detector 
+novelty_detector_name: dfm # can be incdfm, dfm, mahal, odin or softmax
+
+# for running oracle, set to False and set novelty_detector_name=dfm
+prediction_propagation: True # if using the predicted labels instead of Ground truth labels for fitting PCA continually
+
+## Validation threshold 
+percentile_val_threshold: 55 # usually among (95,85,75,65)
+

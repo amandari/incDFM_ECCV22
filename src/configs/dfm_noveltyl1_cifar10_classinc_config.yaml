@@ -1,0 +1,14 @@
+# Novelty + data Params
+scenario: nc
+dset_name: cifar10
+experiment_name: test_0
+num_threads: 6
+num_workers: 4
+data_dir: ./data
+dir_results: ./src/novelty_level1/results
+experiment_dir: ./src/novelty_level1/experiments
+novelty_detector: dfm
+detector_params:
+  pca_level: 0.995
+  score_type: pca
+

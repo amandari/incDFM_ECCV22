@@ -1,0 +1,9 @@
+1. Run coreset supervised finetuning (raw images)
+2. Rewrite classifier class to be able to swap pretrained embeddings etc. 
+    2.1. Maybe separate into backbone vs. classifier classes
+    2.2. Then have parent class that loads both in 
+
+3. Write L2-SP optimization loss for few-data adaptation transfer. 
+
+4. How can what I'm doing transfer to few-shot literature.... If L2-SP reg works with few-shot tasks using contrastive learning ...
+5. propose other pretext tasks? The clustering approach from PCL is very interesting --> EM algorithm

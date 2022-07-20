@@ -1,0 +1,4 @@
+detector_params:
+  num_components: 1600
+  balance_classes: True # set false for cifar100, emnist with val 95 because not enough predicted new data
+threshold_type: simple 

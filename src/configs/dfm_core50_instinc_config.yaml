@@ -1,0 +1,29 @@
+# Set true if skipping training
+only_novelty: true
+
+# Novelty + data Params
+scenario: nc
+dset_name: core50
+experiment_filepath: ./experiments/core50/inc_instance
+scenario_classif: instance
+exp_type: instance 
+num_threads: 6
+num_workers: 4
+data_dir: ./data
+dir_results: ./Results
+novelty_detector: dfm
+detector_params:
+  pca_level: 0.995
+  score_type: pca
+
+
+# When training: 
+# batchsize: 50
+# num_epochs: 10
+# coreset_size: 1000
+
+# If doing latent replay, else comment.
+# latent_layer_name: 'FC.3'
+# weight_latent: 0.5
+# percent_latent: 0.05 
+# weight_old: 0.95
