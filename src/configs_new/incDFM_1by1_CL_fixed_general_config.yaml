@@ -22,7 +22,7 @@ train_technique: 1
 lr: 0.001 # ref is 0.001
 type_batch_divide: half
 
-max_batch_ratio: 0.85
+max_batch_ratio: 0.85 #maximum ratio between old and new (sort of like a cap)
 
 fc_sizes: '4096' # layers of clf perceptron, if using a classifier, else just put an empty string ''
 finetune_backbone: 'off' # freeze backbone (to finetune backbone put 'all')

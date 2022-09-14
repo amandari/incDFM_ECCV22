@@ -10,21 +10,21 @@ prediction_propagation: True # if using the predicted labels instead of Ground t
 
 
 ## Validation threshold 
-percentile_val_threshold: 95 # usually among (95,85,75,65)
+percentile_val_threshold: 85 # usually among (95,85,75,65)
 
 
 # gpu
-device: 1
+device: 3
 # testing for debug or not
-test_num: 11 # if debuging put integer > 0. else, -1 
+test_num: 0 # if debuging put integer > 0. else, -1 
 
 
 # Training 
 train_clf: False #For odin and softmax you need to set to True. 
 
 # if not doing 1 class at a time
-experiment_name: rebuttal_intraclass_2_by_2
-num_per_task: 2
+experiment_name: Standard_1_by_1
+num_per_task: 1
 num_classes_first: 2
 num_tasks: -1 ## set to -1 if wanting to use entire dataset 
 
