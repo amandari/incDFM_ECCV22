@@ -1,0 +1,34 @@
+
+# -------------------------------Experiment setup---------------------
+# Training 
+train_clf: False #For odin and softmax will set automatically to true in main script
+prediction_propagation: True # if using the predicted labels instead of Ground truth labels for fitting PCA continually
+percentile_val_threshold: 85 # Validation threshold for OOD, usually among (95,85,75,65)
+
+
+# if not doing 1 class at a time
+experiment_name: Standard_1_by_1
+num_per_task: 1
+num_classes_first: 2
+num_tasks: -1 ## set to -1 if wanting to use entire dataset 
+
+# Mix of old vs new in each task 1 --> num_new = num_old. 2 --> num_old = 2*num_new
+percent_old_mix: 1.0 # Can be greater then 1.0 - percent which is comming from "old data" 
+holdout_percent: 0.2 # (only when creating the experiment) if you are already passing a filepath, this parameter wont matter
+val_percent: 0.1 # if leaving part of train as validation set
+
+equalize_labels: False # In case of unbalanced datasets. If set to True, will balance them 
+clip_labels: True # In case of unbalanced datasets, will clip counts of classes with too many samples 
+clip_max: 15000 # In case of unbalanced datasets, will clip counts of classes with too many samples 
+
+batchsize: 50
+num_epochs: 30
+coreset_size: 5000 # number of old images to store 
+
+# -------------------------------paths-------------------------------------
+
+data_dir: ./data
+dir_results: ./results
+experiment_dir: ./experiments
+standard_config_file: ./configs/incDFM_1by1_CL_fixed_general_config.yaml #general config file 
+
